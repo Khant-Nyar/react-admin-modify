@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { List, Datagrid, TextField, EmailField, EditButton } from 'react-admin';
 import { postFilter } from '../filter/postFilter';
-
+import { Member } from './interface/member'
 export interface User {
   id: number;
   name: string;
@@ -11,7 +11,7 @@ export interface User {
   website: string;
 }
 
-export const UserList = (props: User) => (
+export const UserList = (props: Member) => (
   <List {...props} filters={postFilter}>
     <Datagrid rowClick="edit">
       <TextField source="id" />

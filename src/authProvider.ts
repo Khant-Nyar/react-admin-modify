@@ -1,5 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unsafe-argument */
 /* eslint-disable prefer-promise-reject-errors */
+import { stat } from 'fs';
 import { AuthProvider, AUTH_LOGIN } from 'react-admin';
 const authProvider: AuthProvider = {
     login: async (auth: FormValues) => {
@@ -15,8 +16,11 @@ const authProvider: AuthProvider = {
                     throw new Error(response.statusText);
                 }
                 const auth = await response.json();                
+                console.log(auth);
+                
                 localStorage.setItem('auth', `${auth.accessToken}`);
-                return Promise.resolve();
+                window.location.replace('/dashboard');
+                Promise.resolve();
             } catch (error) {
                 throw new Error('Network error');
             }
@@ -29,7 +33,13 @@ const authProvider: AuthProvider = {
         localStorage.removeItem('auth');
         return Promise.resolve();
     },
-    checkError: () => Promise.resolve(),
+    checkError: ({status}) => {
+        if(status === 401 || status === 403){
+            localStorage.removeItem('token');
+            return Promise.reject();
+        }
+        return Promise.resolve()
+    },
     checkAuth: () =>
         localStorage.getItem('auth') ? Promise.resolve() : Promise.reject(),
     getPermissions: () => Promise.reject('Unknown method'),
