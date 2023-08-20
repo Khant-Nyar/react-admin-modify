@@ -140,6 +140,15 @@ const Menu = ({ dense = false }: MenuProps) => {
           dense={dense}
         />
       </SubMenu>
+      <MenuItemLink
+          to="/users/create"
+          state={{ _scrollToTop: true }}
+          primaryText={translate(`UserCreate`, {
+            smart_count: 2,
+          })}
+          leftIcon={<LabelIcon />}
+          dense={dense}
+        />
     </Box>
   );
 };

@@ -21,10 +21,10 @@ import OrderList from './components/orders/OrderList';
 //   fetchUtils.fetchJson,
 //   'X-Total-Count',
 // );
-// const dataProvider = jsonServerProvider('https://jsonplaceholder.typicode.com');
-const dataProvider = simpleRestProvider(
-    'http://localhost:5000',
-)
+const dataProvider = jsonServerProvider('https://jsonplaceholder.typicode.com');
+// const dataProvider = simpleRestProvider(
+//     'http://localhost:5000',
+// )
 const App = (): JSX.Element => (
   <Admin
     title="My Custom Admin"
