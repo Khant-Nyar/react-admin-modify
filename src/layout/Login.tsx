@@ -20,7 +20,7 @@ import {
 
 import Box from '@mui/material/Box';
 
-const Login = () => {
+const LoginPage = () => {
   const [loading, setLoading] = useState(false);
   const translate = useTranslate();
 
@@ -30,7 +30,7 @@ const Login = () => {
 
   const handleSubmit = (auth: FormValues) => {
     setLoading(true);
-    login(auth, location.state ? location.state.nextPathname : '/').catch(
+    login(auth, location.state ? location.state.nextPathname : '/login').catch(
       (error: Error) => {
         setLoading(false);
         notify(
@@ -95,8 +95,9 @@ const Login = () => {
             <Box sx={{ marginTop: '1em' }}>
               <TextInput
                 autoFocus
-                source="username"
-                label={translate('ra.auth.username')}
+                source="email"
+                // label={translate('ra.auth.email')} //I did't get it 
+                label='emial'
                 disabled={loading}
                 validate={required()}
                 fullWidth
@@ -104,8 +105,9 @@ const Login = () => {
             </Box>
             <Box sx={{ marginTop: '1em' }}>
               <TextInput
-                source="password"
-                label={translate('ra.auth.password')}
+                source="walletAddress"
+                // label={translate('ra.auth.walletAddress')} //I did't get it 
+                label='Wallet Address'
                 type="password"
                 disabled={loading}
                 validate={required()}
@@ -136,9 +138,9 @@ const Login = () => {
 //   previousRoute: PropTypes.string,
 // };
 
-export default Login;
+export default LoginPage;
 
 interface FormValues {
-  username?: string;
-  password?: string;
+  email?: string;
+  walletAddress?: string;
 }

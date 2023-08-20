@@ -11,44 +11,38 @@ import './App.css';
 import Menu from './layout/Menu';
 import authProvider from './authProvider';
 
-import { Layout } from './layout';
+import { Layout, LoginPage } from './layout';
 import { PostCreate } from './components/posts/create';
 import OrderList from './components/orders/OrderList';
 
-// apiURL
-// const dataProvider = simpleRestProvider(
-//   'http://localhost:3000',
-//   fetchUtils.fetchJson,
-//   'X-Total-Count',
-// );
 const dataProvider = jsonServerProvider('https://jsonplaceholder.typicode.com');
 
 const App = (): JSX.Element => (
-  <Admin
-    title="My Custom Admin"
-    loginPage={Login}
-    dashboard={DashBoard}
-    dataProvider={dataProvider}
-    authProvider={authProvider}
-    layout={Layout}
-  >
-    <Menu />
-    <Resource
-      name="users"
-      list={UserList}
-      create={UserCreate}
-      edit={EditGuesser}
-      recordRepresentation="name"
-    />
+    <Admin
+        title="My Custom Admin"
+        loginPage={LoginPage}
+        dashboard={DashBoard}
+        dataProvider={dataProvider}
+        authProvider={authProvider}
+        layout={Layout}
+    >
+        <Menu />
+        <Resource
+            name="users"
+            list={UserList}
+            create={UserCreate}
+            edit={EditGuesser}
+            recordRepresentation="name"
+        />
 
-    <Resource
-      name="posts"
-      list={PostList}
-      create={PostCreate}
-      edit={EditGuesser}
-    />
-    <Resource name="orders" list={OrderList} />
-  </Admin>
+        <Resource
+            name="posts"
+            list={PostList}
+            create={PostCreate}
+            edit={EditGuesser}
+        />
+        <Resource name="orders" list={OrderList} />
+    </Admin>
 );
 
 export default App;
